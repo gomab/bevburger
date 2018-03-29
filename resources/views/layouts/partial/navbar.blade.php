@@ -28,7 +28,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <!--  <li class="nav-item dropdown">
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">notifications</i>
                         <span class="notification">5</span>
@@ -43,7 +43,7 @@
                         <a class="dropdown-item" href="#">Another Notification</a>
                         <a class="dropdown-item" href="#">Another One</a>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#pablo">
                         <i class="material-icons">person</i>
@@ -52,6 +52,20 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
+                        <i class="material-icons">exit_to_app</i>
+                        <p>
+                            <span class="d-lg-none d-md-block">Logout</span>
+                        </p>
+                    </a>
+                    <form id="logout-form" method="post" action="{{ route('logout') }}" style="display: none">
+                        @csrf
+                    </form>
+                </li>
+
+
             </ul>
         </div>
     </div>

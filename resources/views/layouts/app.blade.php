@@ -23,20 +23,26 @@
     @stack('css')
 </head>
 
-<body class="">
-    <div class="app">
+<body>
+    <div id="app">
         <div class="wrapper">
-            @include('layouts.partial.sidebar')
+           @if(Request::is('admin*'))
+                @include('layouts.partial.sidebar')
+            @endif
 
             <div class="main-panel">
                 <!-- Navbar -->
-                @include('layouts.partial.navbar')
+                @if(Request::is('admin*'))
+                    @include('layouts.partial.navbar')
+                @endif
                 <!-- End Navbar -->
                     <!-- Content -->
                     @yield('content')
                     <!-- End Content -->
                 <!-- Footer -->
-                @include('layouts.partial.footer')
+                @if(Request::is('admin*'))
+                    @include('layouts.partial.footer')
+                @endif
                 <!-- End Footer -->
 
             </div>
