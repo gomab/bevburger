@@ -3,7 +3,7 @@
 @section('title', 'slider')
 
 @push('css')
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 @endpush
 
 
@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table id="table" class="table table-striped table-bordered" style="width:100%">
                                     <thead class=" text-primary">
                                     <th>
                                         ID
@@ -202,5 +202,15 @@
 @endsection
 
 @push('scripts')
-
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            } );
+        } );
+    </script>
 @endpush
