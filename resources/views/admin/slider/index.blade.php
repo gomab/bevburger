@@ -17,17 +17,7 @@
                     <a href="{{ route('slider.create') }}" class="btn btn-info">Add New Slider</a>
 
                     <!-- Success Message -->
-                    @if (session('successMsg'))
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <i class="material-icons">close</i>
-                            </button>
-                            <span>
-                                <b> Success - </b> {{ session('successMsg') }}
-                            </span>
-                        </div>
-                    @endif
-
+                    @include('layouts.partial.msg')
                     <!-- End Success Msg -->
 
                     <div class="card">
@@ -57,6 +47,9 @@
                                     <th>
                                         Updated At
                                     </th>
+                                    <th>
+                                        Action
+                                    </th>
 
                                     </thead>
                                     <tbody>
@@ -68,6 +61,7 @@
                                                 <td>{{ $slider->image }}</td>
                                                 <td>{{ $slider->created_at }}</td>
                                                 <td>{{ $slider->updated_at }}</td>
+                                                <td><a class="btn btn-info btn-sm" href="{{ route('slider.edit', $slider->id) }}">Edit</a></td>
                                             </tr>
                                         @endforeach
 
