@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+ * Route Home frontend
+ */
+Route::get('/', 'HomeController@index')->name('welcome');
 
 /*
 *Route dashboard
