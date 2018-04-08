@@ -26,6 +26,7 @@
 <body>
     <div id="app">
         <div class="wrapper">
+            <!--Si ma requet commence par admin -->
            @if(Request::is('admin*'))
                 @include('layouts.partial.sidebar')
             @endif

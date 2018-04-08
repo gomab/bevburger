@@ -50,6 +50,7 @@
                                                 <td>{{ $slider->sub_title }}</td>
                                                 <td>{{ $slider->image }}</td>
                                                 <td>{{ $slider->created_at }}</td>
+                                                <td>{{ $slider->updated_at }}</td>
                                             </tr>
                                         @endforeach
 
