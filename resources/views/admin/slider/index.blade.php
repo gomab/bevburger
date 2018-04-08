@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <a href="{{ route('slider.create') }}" class="btn btn-info">Add New Slider</a>
+                    <a href="{{ route('slider.create') }}" class="btn btn-primary">Add New Slider</a>
 
                     <!-- Success Message -->
                     @include('layouts.partial.msg')
@@ -51,6 +51,7 @@
                                         Action
                                     </th>
 
+
                                     </thead>
                                     <tbody>
                                         @foreach($sliders as $key=>$slider)
@@ -61,7 +62,24 @@
                                                 <td>{{ $slider->image }}</td>
                                                 <td>{{ $slider->created_at }}</td>
                                                 <td>{{ $slider->updated_at }}</td>
-                                                <td><a class="btn btn-info btn-sm" href="{{ route('slider.edit', $slider->id) }}">Edit</a></td>
+                                                <td><a class="btn btn-info btn-sm" href="{{ route('slider.edit', $slider->id) }}"><i class="material-icons">mode_edit</i></a></td>
+                                                <td>
+                                                    <form id="delete-form-{{ $slider->id }}" action="{{ route('slider.destroy', $slider->id) }}" style="display: none;" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                    <button class="btn btn-danger btn-sm" type="button" onclick="if(confirm('Confirmation suppression ?')){
+                                                        event.preventDefault();
+                                                        document.getElementById('delete-form-{{ $slider->id }}').submit();
+                                                    }else {
+                                                        event.preventDefault();
+                                                            }
+                                                            ">
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                </td>
+
+                                            <!-- <td><a class="btn btn-danger btn-sm" href="{{ route('slider.edit', $slider->id) }}"><i class="material-icons">delete</i></a></td>-->
                                             </tr>
                                         @endforeach
 
