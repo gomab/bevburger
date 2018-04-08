@@ -13,6 +13,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+
+                    <a href="{{ route('slider.create') }}" class="btn btn-info">Add New Slider</a>
+
+                    <!-- Success Message -->
+                    @if (session('successMsg'))
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                <b> Success - </b> {{ session('successMsg') }}
+                            </span>
+                        </div>
+                    @endif
+
+                    <!-- End Success Msg -->
+
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">All Slider</h4>

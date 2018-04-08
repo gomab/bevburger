@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Slider;
+use Carbon\carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.slider.create');
     }
 
     /**
@@ -38,8 +39,58 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * Traitement formulaire slider.create | 
+         * return $request->all();
+         */
+
+        //Controle validation
+        $this->validate($request, [
+            'title' => 'required',
+            'sub_title' => 'required',
+            'image'    => 'required|mimes: jpeg,jpg,bmp,png',
+        ]);
+
+        //Upload image
+        $image = $request->file('image');
+        $slug = str_slug($request->title); 
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug .'-'. $currentDate .'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+            if(!file_exists('uploads/slider')){
+                mkdir('uploads/slider', 0777, true);
+            }
+            $image->move('uploads/slider',$imagename);
+        }else{
+            $imagename = 'default.png';
+        }
+
+        //create slider
+        /* 
+        $sliders = Slider::create([
+            'title'     => $request->input('title'),
+            'sub_title' => $request->input('sub_title'),
+            'image'     => $imagename
+        ]);
+
+        return redirect()->route('slider.index');
+        */
+
+        $slider = new Slider();
+        $slider->title = $request->title;
+        $slider->sub_title = $request->sub_title;
+        $slider->image = $imagename;
+        $slider->save();
+        return redirect()->route('slider.index')->with('successMsg','Slider ajouté avec succes');
     }
+
+    public function messages()
+        {
+        return [
+            'title.required' => 'Le titre is required',
+            'subtitle.required'  => 'A message is required',
+            ];
+       }
 
     /**
      * Display the specified resource.
@@ -47,6 +98,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function show($id)
     {
         //
