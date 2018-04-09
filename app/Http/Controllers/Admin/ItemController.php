@@ -174,7 +174,7 @@ class ItemController extends Controller
         $item = Item::find($id);
 
         if(file_exists('uploads/item/'.$item->image)){
-            unlink('uploads/item/'. $item->image);
+            unlink('uploads/item/'.$item->image);
         }
 
         $item->delete();
