@@ -3,7 +3,6 @@
 @section('title', 'Category')
 
 @push('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 @endpush
 
@@ -59,8 +58,8 @@
                                                 <td>{{ $category->slug }}</td>
                                                 <td>{{ $category->created_at }}</td>
                                                 <td>{{ $category->updated_at }}</td>
-                                                <td><a class="btn btn-info btn-sm" href="{{ route('category.edit', $category->id) }}"><i class="material-icons">mode_edit</i></a></td>
-                                                <td>
+                                                <td><a class="btn btn-info btn-sm" href="{{ route('category.edit', $category->id) }}"><i class="material-icons">mode_edit</i></a>
+
                                                     <form id="delete-form-{{ $category->id }}" action="{{ route('category.destroy', $category->id) }}" style="display: none;" method="post">
                                                         @csrf
                                                         @method('DELETE')
@@ -92,7 +91,6 @@
 @endsection
 
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script>
