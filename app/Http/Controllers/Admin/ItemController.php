@@ -104,7 +104,10 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::find($id);
+        $categories = Category::all();
+
+        return view('admin.item.edit', compact('item', 'categories'));
     }
 
     /**
@@ -116,7 +119,48 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /**
+         * Traitement formulaire slider.create |
+         * return $request->all();
+         */
+
+        //Validation des champs
+        $this->validate($request, [
+            'name'        => 'required',
+            'category'    => 'required',
+            'price'       => 'required',
+            'description' => 'required',
+            'image'       => 'mimes:jpeg,jpg,bmp,png',
+        ]);
+
+        $item = Item::find($id);
+
+        //Upload img
+        $image = $request->file('image');
+        $slug = str_slug($request->title);
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug .'-'. $currentDate .'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+
+            if(!file_exists('uploads/item')){
+                mkdir('uploads/item', 0777, true);
+                unlink('uploads/item/'.$item->image);
+            }
+            //unlink('uploads/item/'.$item->image);
+            $image->move('uploads/item',$imagename);
+        }else{
+            $imagename = $item->image;
+        }
+
+        //Update item
+        $item->category_id = $request->category;
+        $item->name        = $request->name;
+        $item->price       = $request->price;
+        $item->description = $request->description;
+        $item->image       = $imagename;
+        $item->save();
+
+        return redirect()->route('item.index')->with('successMsg','Item MAJ avec succes');
     }
 
     /**
