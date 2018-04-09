@@ -30,12 +30,13 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
-            <li class="nav-item ">
-                <a class="nav-link" href="../examples/typography.html">
+            <li class="nav-item {{ Request::is('admin/item*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('item.index') }}">
                     <i class="material-icons">library_books</i>
-                    <p>Typography</p>
+                    <p>Item</p>
                 </a>
             </li>
+
             <li class="nav-item ">
                 <a class="nav-link" href="../examples/icons.html">
                     <i class="material-icons">bubble_chart</i>
