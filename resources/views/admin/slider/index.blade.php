@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'slider')
+@section('title', 'Slider')
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
@@ -29,27 +29,30 @@
                             <div class="table-responsive">
                                 <table id="table" class="table table-striped table-bordered" style="width:100%">
                                     <thead class=" text-primary">
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Title
-                                    </th>
-                                    <th>
-                                        Sub Title
-                                    </th>
-                                    <th>
-                                        Image
-                                    </th>
-                                    <th>
-                                        Created At
-                                    </th>
-                                    <th>
-                                        Updated At
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
+                                        <tr>
+                                            <th>
+                                                ID
+                                            </th>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Sub Title
+                                            </th>
+                                            <th>
+                                                Image
+                                            </th>
+                                            <th>
+                                                Created At
+                                            </th>
+                                            <th>
+                                                Updated At
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+
 
 
                                     </thead>
@@ -62,8 +65,8 @@
                                                 <td>{{ $slider->image }}</td>
                                                 <td>{{ $slider->created_at }}</td>
                                                 <td>{{ $slider->updated_at }}</td>
-                                                <td><a class="btn btn-info btn-sm" href="{{ route('slider.edit', $slider->id) }}"><i class="material-icons">mode_edit</i></a></td>
-                                                <td>
+                                                <td><a class="btn btn-info btn-sm" href="{{ route('slider.edit', $slider->id) }}"><i class="material-icons">mode_edit</i></a>
+
                                                     <form id="delete-form-{{ $slider->id }}" action="{{ route('slider.destroy', $slider->id) }}" style="display: none;" method="post">
                                                         @csrf
                                                         @method('DELETE')

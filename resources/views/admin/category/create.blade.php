@@ -35,7 +35,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Slug</label>
-                                            <input type="text" class="form-control" name="slug">
+                                            <input type="text" class="form-control" name="slug" disabled>
                                         </div>
                                     </div>
                                 </div>
