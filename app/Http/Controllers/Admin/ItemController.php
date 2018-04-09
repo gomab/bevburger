@@ -60,10 +60,10 @@ class ItemController extends Controller
 
         //Upload img
         $image = $request->file('image');
-        $slug = str_slug($request->title);
+        $slug = str_slug($request->name);
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
-            $imagename = $slug .'-'. $currentDate .'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
 
             if(!file_exists('uploads/item')){
                 mkdir('uploads/item', 0777, true);
@@ -137,14 +137,14 @@ class ItemController extends Controller
 
         //Upload img
         $image = $request->file('image');
-        $slug = str_slug($request->title);
+        $slug = str_slug($request->name);
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
-            $imagename = $slug .'-'. $currentDate .'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
 
             if(!file_exists('uploads/item')){
                 mkdir('uploads/item', 0777, true);
-                unlink('uploads/item/'.$item->image);
+                //unlink('uploads/item/'.$item->image);
             }
             //unlink('uploads/item/'.$item->image);
             $image->move('uploads/item',$imagename);
@@ -171,6 +171,14 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::find($id);
+
+        if(file_exists('uploads/item/'.$item->image)){
+            unlink('uploads/item/'. $item->image);
+        }
+
+        $item->delete();
+
+        return redirect()->back()->with('successMsg', 'Item supprimer avec succes');
     }
 }
