@@ -46,9 +46,9 @@ class SliderController extends Controller
 
         //Controle validation
         $this->validate($request, [
-            'title' => 'required',
+            'title'     => 'required',
             'sub_title' => 'required',
-            'image'    => 'required|mimes: jpeg,jpg,bmp,png',
+            'image'     => 'required|mimes: jpeg,jpg,bmp,png',
         ]);
 
         //Upload image
