@@ -46,4 +46,6 @@ Route::group([
     Route::get('/reservation', 'ReservationController@index')->name('reservation.index');
     Route::post('/reservation/{id}', 'ReservationController@status')->name('reservation.status');
     Route::delete('/reservation/{id}', 'ReservationController@destroy')->name('reservation.destroy');
+
+    Route::get('/contact', 'ContactController@index')->name('contact.index');
 });

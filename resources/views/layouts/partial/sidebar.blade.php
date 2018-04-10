@@ -44,6 +44,13 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
+            <li class="nav-item {{ Request::is('admin/contact*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('contact.index') }}">
+                    <i class="material-icons">message</i>
+                    <p>Contact Messages</p>
+                </a>
+            </li>
+
             <li class="nav-item ">
                 <a class="nav-link" href="../examples/icons.html">
                     <i class="material-icons">bubble_chart</i>
