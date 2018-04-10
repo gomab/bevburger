@@ -97,8 +97,6 @@
    @endforeach
 </section>
 
-
-
 <!--== 6. About us ==-->
 <section id="about" class="about">
     <img src="{{ asset('frontend/images/icons/about_color.png') }}" class="img-responsive section-icon hidden-sm hidden-xs">
@@ -204,7 +202,6 @@
 </section> <!-- /#great-place-to-enjoy -->
 
 
-
 <!--==  9. Our Beer  ==-->
 <section id="beer" class="beer">
     <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/beer_color.png">
@@ -232,7 +229,6 @@
 </section>
 
 
-
 <!--== 10. Our Breakfast Menu ==-->
 <section id="breakfast" class="breakfast">
     <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/bread_black.png">
@@ -249,7 +245,6 @@
         </div> <!-- /.row -->
     </div> <!-- /.wrapper -->
 </section> <!-- /#breakfast -->
-
 
 
 <!--== 11. Our Bread ==-->
@@ -280,8 +275,6 @@
 </section>
 
 
-
-
 <!--== 12. Our Featured Dishes Menu ==-->
 <section id="featured-dish" class="featured-dish">
     <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/food_black.png">
@@ -298,8 +291,6 @@
         </div> <!-- /.row -->
     </div> <!-- /.wrapper -->
 </section> <!-- /#featured-dish -->
-
-
 
 
 <!--== 13. Menu List ==-->
@@ -555,7 +546,6 @@
 </section>
 
 
-
 <!--== 14. Have a look to our dishes ==-->
 
 <section id="have-a-look" class="have-a-look hidden-xs">
@@ -617,8 +607,6 @@
 </section>
 
 
-
-
 <!--== 15. Reserve A Table! ==-->
 <section id="reserve" class="reserve">
     <img class="img-responsive section-icon hidden-sm hidden-xs" src="{{ asset('frontend/images/icons/reserve_black.png') }}">
@@ -635,7 +623,6 @@
         </div> <!-- /.row -->
     </div> <!-- /.wrapper -->
 </section> <!-- /#reserve -->
-
 
 
 <section class="reservation">
@@ -710,8 +697,6 @@
 </section>
 
 
-
-
 <section id="contact" class="contact">
     <div class="container-fluid color-bg">
         <div class="row dis-table">
@@ -741,21 +726,14 @@
     </div>
 </section>
 
-<div class="container-fluid">
-    <div class="row">
-        <div id="map-canvas"></div>
-    </div>
-</div>
-
-
 
 <section class="contact-form">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                 <div class="row">
-                    <form class="contact-form" method="post" action="contact.php">
-
+                    <form class="contact-form" method="post" action="{{ route('contact.send') }}">
+                        @csrf
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <input  name="name" type="text" class="form-control" id="name" required="required" placeholder="  Name">
