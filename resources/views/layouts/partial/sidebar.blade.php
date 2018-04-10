@@ -37,6 +37,13 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
+            <li class="nav-item {{ Request::is('admin/reservation*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('reservation.index') }}">
+                    <i class="material-icons">chrome_reader_mode</i>
+                    <p>Reservations</p>
+                </a>
+            </li>
+
             <li class="nav-item ">
                 <a class="nav-link" href="../examples/icons.html">
                     <i class="material-icons">bubble_chart</i>
