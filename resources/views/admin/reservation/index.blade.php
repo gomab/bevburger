@@ -4,6 +4,7 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endpush
 
 
@@ -77,21 +78,37 @@
                                                     @endif()
                                                 </th>
                                                 <td>{{ $reservation->created_at }}</td>
-                                                <td><a class="btn btn-info btn-sm" href=""><i class="material-icons">mode_edit</i></a>
+                                                <td>
+                                                    @if($reservation->status == false)
+                                                        <form id="status-form-{{ $reservation->id }}" action="{{ route('reservation.status', $reservation->id) }}" style="display: none;" method="post">
+                                                            @csrf
+                                                        </form>
 
-                                                    <form id="delete-form-{{ $reservation->id }}" action="" style="display: none;" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                    <button class="btn btn-danger btn-sm" type="button" onclick="if(confirm('Confirmation suppression ?')){
-                                                        event.preventDefault();
-                                                        document.getElementById('delete-form-{{ $reservation->id }}').submit();
-                                                    }else {
-                                                        event.preventDefault();
-                                                            }
-                                                            ">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
+                                                        <button class="btn btn-info btn-sm" type="button" onclick="if(confirm('Voulez-vous confirmer cettre reservation par téléphone ?')){
+                                                            event.preventDefault();
+                                                            document.getElementById('status-form-{{ $reservation->id }}').submit();
+                                                        }else {
+                                                            event.preventDefault();
+                                                                }
+                                                                ">
+                                                            <i class="material-icons">done</i>
+                                                        </button>
+                                                    @endif
+                                                        <form id="delete-form-{{ $reservation->id }}" action="{{ route('reservation.destroy', $reservation->id) }}" style="display: none;" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+
+                                                        <button class="btn btn-danger btn-sm" type="button" onclick="if(confirm('Confirmation suppression ?')){
+                                                                event.preventDefault();
+                                                                document.getElementById('delete-form-{{ $reservation->id }}').submit();
+                                                                }else {
+                                                                event.preventDefault();
+                                                                }
+                                                                ">
+                                                            <i class="material-icons">delete</i>
+                                                        </button>
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -255,4 +272,18 @@
             } );
         } );
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Msg Error -->
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                toastr.error('{{ $error }}');
+            </script>
+        @endforeach
+    @endif
+    <!-- End Msg Error -->
+
+    {!! Toastr::message() !!}
 @endpush
+

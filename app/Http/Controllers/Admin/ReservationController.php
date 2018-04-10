@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Reservation;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
 
 class ReservationController extends Controller
@@ -20,59 +21,15 @@ class ReservationController extends Controller
         return view('admin.reservation.index', compact('reservations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function status($id){
+        $reservation = Reservation::find($id);
+        $reservation->status = true;
+        $reservation->save();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        Toastr::success('Réservation confirmée', 'Success', ["positionClass" => "toast-top-right"]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        return redirect()->back();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -83,6 +40,11 @@ class ReservationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Reservation::find($id)->delete();
+
+        Toastr::success('Réservation supprimée avec success', 'Success', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
+
     }
 }

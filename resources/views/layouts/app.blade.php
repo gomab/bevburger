@@ -49,6 +49,7 @@
             </div>
         </div>
     </div>
+
 </body>
 <!--   Core JS Files   -->
 <script src="{{ asset('backend/js/core/jquery.min.js') }}"></script>
